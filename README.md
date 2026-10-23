@@ -7,12 +7,7 @@ I made this project using PHP and MySQL. Students can look through the book cata
 **Hosted website:** [elibrary-kolej-atx.infy.click](https://elibrary-kolej-atx.infy.click/)  
 The hosted website uses a separate database from the one shared here.
 
-![Stars](https://img.shields.io/github/stars/Haziq-Adam/Haziq-Adam?style=flat-square&color=007ec6)
-![Forks](https://img.shields.io/github/forks/Haziq-Adam/Haziq-Adam?style=flat-square&color=007ec6)
-![Commits](https://img.shields.io/github/commit-activity/t/Haziq-Adam/Haziq-Adam?style=flat-square&label=commits&color=007ec6)
-![Last Commit](https://img.shields.io/github/last-commit/Haziq-Adam/Haziq-Adam?style=flat-square&label=last%20commit&color=44cc11)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)
-
+![Stars](https://img.shields.io/github/stars/Haziq-Adam/E-Library-Management-System?style=flat-square)
 ## Contents
 
 - [What the system does](#what-the-system-does)

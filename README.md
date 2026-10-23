@@ -7,7 +7,18 @@ I made this project using PHP and MySQL. Students can look through the book cata
 **Hosted website:** [elibrary-kolej-atx.infy.click](https://elibrary-kolej-atx.infy.click/)  
 The hosted website uses a separate database from the one shared here.
 
-![Stars](https://img.shields.io/github/stars/Haziq-Adam/E-Library-Management-System?style=flat-square)
+![Stars](https://img.shields.io/badge/stars-repo_not_found-red?style=flat-square)
+![Repository](https://img.shields.io/badge/Repository-Private-ff69b4?style=flat-square)
+![PHP](https://img.shields.io/badge/PHP-Backend-777BB4?style=flat-square)
+![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-Frontend-F7DF1E?style=flat-square)
+![Full Stack](https://img.shields.io/badge/Full--Stack-Web%20App-0A66C2?style=flat-square)
+![Web Development](https://img.shields.io/badge/Web-Development-1E90FF?style=flat-square)
+![UI/UX](https://img.shields.io/badge/UI%2FUX-Design-8A2BE2?style=flat-square)
+![Dashboard](https://img.shields.io/badge/Dashboard-Admin-20B2AA?style=flat-square)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-Styled-06B6D4?style=flat-square)
+![Responsive Design](https://img.shields.io/badge/Responsive-Design-32CD32?style=flat-square)
+![Management System](https://img.shields.io/badge/Management-System-FF8C00?style=flat-square)
 ## Contents
 
 - [What the system does](#what-the-system-does)

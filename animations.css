@@ -1,0 +1,327 @@
+/* ══════════════════════════════════════════════════
+   STB E-Library — WOW Animations (Professional)
+   Centralised, reusable, respects reduced motion
+   ══════════════════════════════════════════════════ */
+
+:root {
+    --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth:  cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-expo:    cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-soft:    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════════════
+   SCROLL PROGRESS BAR (top of page)
+   ══════════════════════════════════════════════════ */
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #a89fe8, #6d5fcc, #f4a4b8);
+    background-size: 200% 100%;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(109, 95, 204, 0.5);
+    transition: width 0.15s var(--ease-smooth);
+    animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* Ghost cursor removed */
+
+/* ══════════════════════════════════════════════════
+   PAGE ENTRANCE
+   ══════════════════════════════════════════════════ */
+main {
+    animation: pageFadeIn 0.7s var(--ease-smooth) both;
+}
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade-out on navigation */
+main.page-leaving {
+    animation: pageFadeOut 0.4s var(--ease-soft) both;
+    pointer-events: none;
+}
+@keyframes pageFadeOut {
+    to { opacity: 0; transform: translateY(-8px) scale(0.995); }
+}
+
+/* ══════════════════════════════════════════════════
+   NAVBAR SLIDE-DOWN
+   ══════════════════════════════════════════════════ */
+.navbar {
+    animation: navDrop 0.9s var(--ease-spring) 0.15s both;
+}
+@keyframes navDrop {
+    from { opacity: 0; transform: translateY(-30px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Stagger navbar links */
+.navbar-links li {
+    opacity: 0;
+    animation: navLinkIn 0.6s var(--ease-smooth) both;
+}
+.navbar-links li:nth-child(1) { animation-delay: 0.45s; }
+.navbar-links li:nth-child(2) { animation-delay: 0.52s; }
+.navbar-links li:nth-child(3) { animation-delay: 0.59s; }
+.navbar-links li:nth-child(4) { animation-delay: 0.66s; }
+.navbar-links li:nth-child(5) { animation-delay: 0.73s; }
+@keyframes navLinkIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover underline sweep for navbar links */
+.navbar-links a:not(.btn-nav-cta) {
+    position: relative;
+    overflow: hidden;
+}
+.navbar-links a:not(.btn-nav-cta)::after {
+    content: '';
+    position: absolute;
+    left: 50%; right: 50%;
+    bottom: 6px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: left 0.35s var(--ease-smooth), right 0.35s var(--ease-smooth);
+}
+.navbar-links a:not(.btn-nav-cta):hover::after {
+    left: 18px; right: 18px;
+}
+
+/* ══════════════════════════════════════════════════
+   SCROLL REVEAL (IntersectionObserver targets)
+   ══════════════════════════════════════════════════ */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s var(--ease-smooth), transform 0.9s var(--ease-smooth);
+    will-change: opacity, transform;
+}
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-reveal="fade-left"]  { transform: translateX(-40px); }
+[data-reveal="fade-right"] { transform: translateX(40px); }
+[data-reveal="zoom"]       { transform: scale(0.88); }
+[data-reveal="fade-left"].revealed,
+[data-reveal="fade-right"].revealed,
+[data-reveal="zoom"].revealed {
+    transform: translate(0, 0) scale(1);
+}
+
+/* Stagger delay modifiers */
+[data-delay="1"]  { transition-delay: 0.08s; }
+[data-delay="2"]  { transition-delay: 0.16s; }
+[data-delay="3"]  { transition-delay: 0.24s; }
+[data-delay="4"]  { transition-delay: 0.32s; }
+[data-delay="5"]  { transition-delay: 0.40s; }
+[data-delay="6"]  { transition-delay: 0.48s; }
+
+/* ══════════════════════════════════════════════════
+   AUTO-POLISH common elements
+   ══════════════════════════════════════════════════ */
+
+/* Cards tilt on hover */
+.stat-card, .upcoming-card, .feature-card, .room-card, .public-card, .booking-row, .today-card {
+    transition: transform 0.5s var(--ease-smooth), box-shadow 0.5s var(--ease-smooth);
+    transform-style: preserve-3d;
+}
+.stat-card:hover, .upcoming-card:hover, .feature-card:hover, .room-card:hover, .public-card:hover, .booking-row:hover, .today-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 50px rgba(109, 95, 204, 0.18);
+}
+
+/* Stat icon pop on card hover */
+.stat-card:hover .stat-icon {
+    animation: iconPop 0.6s var(--ease-spring);
+}
+@keyframes iconPop {
+    0%   { transform: scale(1) rotate(0); }
+    40%  { transform: scale(1.18) rotate(-6deg); }
+    70%  { transform: scale(0.95) rotate(3deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+.stat-icon { transition: transform 0.35s var(--ease-spring); }
+
+/* Feature icon rotate + scale on card hover */
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(-8deg);
+}
+.feature-icon { transition: transform 0.45s var(--ease-spring); }
+
+/* Room emoji bounce on card hover */
+.room-card:hover .room-emoji {
+    animation: emojiBounce 0.7s var(--ease-spring);
+}
+@keyframes emojiBounce {
+    0%   { transform: scale(1) rotate(0); }
+    30%  { transform: scale(1.25) rotate(-10deg); }
+    60%  { transform: scale(0.92) rotate(6deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+/* Room card gradient shine sweep */
+.room-card { position: relative; overflow: hidden; }
+.room-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -80%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+    transform: skewX(-20deg);
+    transition: left 0.8s var(--ease-smooth);
+    pointer-events: none;
+    z-index: 1;
+}
+.room-card:hover::before { left: 130%; }
+
+/* ══════════════════════════════════════════════════
+   BUTTONS — magnetic + ripple
+   ══════════════════════════════════════════════════ */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s var(--ease-spring), box-shadow 0.35s var(--ease-smooth), background 0.3s;
+}
+
+/* Ripple ping on click */
+.btn .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(0);
+    animation: rippleOut 0.75s var(--ease-smooth);
+    pointer-events: none;
+}
+@keyframes rippleOut {
+    to { transform: scale(4); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════════════
+   FORM INPUT — focus glow + label lift
+   ══════════════════════════════════════════════════ */
+.form-control {
+    transition: all 0.35s var(--ease-smooth);
+}
+.form-control:focus {
+    transform: translateY(-1px);
+}
+.form-group:focus-within .form-label {
+    color: var(--primary);
+    transform: translateX(2px);
+}
+.form-label {
+    transition: color 0.3s, transform 0.3s var(--ease-smooth);
+    display: block;
+}
+
+/* ══════════════════════════════════════════════════
+   BADGE POP IN
+   ══════════════════════════════════════════════════ */
+.badge {
+    animation: badgePop 0.6s var(--ease-spring) both;
+}
+@keyframes badgePop {
+    from { opacity: 0; transform: scale(0.6); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════════════
+   STATUS TABS hover wiggle
+   ══════════════════════════════════════════════════ */
+.status-tab {
+    transition: transform 0.35s var(--ease-spring), box-shadow 0.35s;
+}
+.status-tab:hover:not(.active) {
+    transform: translateY(-3px);
+}
+
+/* ══════════════════════════════════════════════════
+   SLOT BUTTONS (booking page) — quick pulse on select
+   ══════════════════════════════════════════════════ */
+.slot-btn { transition: all 0.25s var(--ease-smooth); }
+.slot-btn.selected {
+    animation: slotSelect 0.5s var(--ease-spring);
+}
+@keyframes slotSelect {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════════════
+   HERO TEXT — letter reveal
+   ══════════════════════════════════════════════════ */
+.text-reveal { display: inline-block; overflow: hidden; }
+.text-reveal .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: wordIn 0.9s var(--ease-expo) both;
+}
+@keyframes wordIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════
+   ALERTS slide + glow
+   ══════════════════════════════════════════════════ */
+.alert {
+    animation: alertSlide 0.6s var(--ease-spring) both;
+    position: relative;
+    overflow: hidden;
+}
+@keyframes alertSlide {
+    from { opacity: 0; transform: translateY(-14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.alert::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: alertShine 2.5s var(--ease-smooth) 0.6s;
+}
+@keyframes alertShine {
+    to { left: 100%; }
+}
+
+/* ══════════════════════════════════════════════════
+   LINKS IN CONTENT — underline draw
+   ══════════════════════════════════════════════════ */
+main a:not(.btn):not(.btn-nav-cta):not(.status-tab):not(.navbar-brand) {
+    position: relative;
+    background-image: linear-gradient(var(--primary), var(--primary));
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.4s var(--ease-smooth);
+}
+main a:not(.btn):not(.btn-nav-cta):not(.status-tab):not(.navbar-brand):hover {
+    background-size: 100% 2px;
+}
+
+/* ══════════════════════════════════════════════════
+   REDUCE MOTION for accessibility
+   ══════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .scroll-progress { display: none !important; }
+}

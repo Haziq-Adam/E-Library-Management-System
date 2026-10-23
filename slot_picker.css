@@ -1,0 +1,87 @@
+/* ═══ SLOT PICKER MODAL v2 ═══ */
+.sp-overlay{position:fixed;inset:0;background:rgba(15,10,40,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.sp-overlay.open{opacity:1;pointer-events:auto}
+
+.sp-card{background:#fff;border-radius:24px;width:520px;max-width:94vw;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 40px 100px rgba(80,60,180,.3),0 0 0 1px rgba(109,95,204,.1);transform:translateY(30px) scale(.94);transition:transform .35s cubic-bezier(.175,.885,.32,1.275)}
+.sp-overlay.open .sp-card{transform:translateY(0) scale(1)}
+
+/* ── Top bar ── */
+.sp-topbar{background:linear-gradient(135deg,#6d5fcc 0%,#8b7fe8 50%,#a89fe8 100%);padding:0;flex-shrink:0}
+.sp-topbar-inner{display:flex;align-items:center;justify-content:space-between;padding:22px 28px 14px}
+.sp-title-group{display:flex;align-items:center;gap:14px}
+.sp-icon-wrap{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}
+.sp-topbar h3{font-size:1.15rem;font-weight:800;color:#fff;margin:0 0 2px;letter-spacing:-.01em}
+.sp-topbar p{font-size:.8rem;color:rgba(255,255,255,.75);margin:0;font-weight:500}
+
+.sp-close{width:36px;height:36px;border-radius:10px;border:none;background:rgba(255,255,255,.15);color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s ease;flex-shrink:0}
+.sp-close:hover{background:rgba(255,255,255,.3);transform:scale(1.08)}
+
+/* Info strip */
+.sp-info-strip{display:flex;align-items:center;gap:10px;padding:10px 28px 14px;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.9);flex-wrap:wrap}
+.sp-info-strip i{margin-right:4px;font-size:.72rem;opacity:.8}
+.sp-divider{width:1px;height:14px;background:rgba(255,255,255,.25);flex-shrink:0}
+.sp-current-badge{background:rgba(255,255,255,.18);padding:4px 10px;border-radius:20px;font-size:.74rem}
+.sp-current-badge strong{color:#fff}
+
+/* ── Body ── */
+.sp-body{padding:20px 24px;overflow-y:auto;flex:1}
+
+/* Section labels */
+.sp-section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted,#8a86a0);margin:14px 0 8px;padding-left:2px;display:flex;align-items:center;gap:6px}
+.sp-section-label:first-child{margin-top:0}
+.sp-section-label i{font-size:.65rem;opacity:.6}
+
+/* Grid */
+.sp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+
+/* Slot buttons */
+.sp-slot{padding:10px 2px;border-radius:12px;font-size:.78rem;font-weight:700;border:2px solid transparent;cursor:pointer;text-align:center;font-family:inherit;line-height:1.2;transition:all .18s ease;position:relative;background:transparent}
+.sp-slot .sp-t{display:block;font-size:.82rem;font-weight:800;letter-spacing:-.01em}
+.sp-slot .sp-tag{display:block;font-size:.6rem;font-weight:600;margin-top:1px;opacity:.75;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* States */
+.sp-slot.s-free{background:#f4f1ff;color:#5b4dc0;border-color:#ddd6fe}
+.sp-slot.s-free:hover{background:#6d5fcc;color:#fff;border-color:#6d5fcc;transform:translateY(-3px);box-shadow:0 8px 20px rgba(109,95,204,.35)}
+
+.sp-slot.s-sel{background:linear-gradient(135deg,#6d5fcc,#8b7fe8);color:#fff;border-color:#6d5fcc;box-shadow:0 6px 18px rgba(109,95,204,.4);transform:translateY(-2px)}
+
+.sp-slot.s-taken{background:#fef2f2;color:#dc2626;border-color:#fecaca;cursor:not-allowed;opacity:.7}
+.sp-slot.s-taken:hover{transform:none;box-shadow:none}
+
+.sp-slot.s-mine{background:#ecfdf5;color:#059669;border-color:#a7f3d0;cursor:default}
+
+.sp-slot.s-current{background:#d1fae5;color:#047857;border-color:#6ee7b7;box-shadow:0 0 0 3px rgba(16,185,129,.15);cursor:default}
+.sp-slot.s-current .sp-tag{color:#047857;font-weight:700;opacity:1}
+
+.sp-slot.s-past{background:#f9fafb;color:#c0bfca;border-color:#e8e7ee;cursor:not-allowed}
+.sp-slot.s-past .sp-t{text-decoration:line-through}
+
+/* Loading */
+.sp-loading{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:40px 0;color:#8b7fe8;font-weight:700;font-size:.85rem}
+.sp-spinner{width:28px;height:28px;border:3px solid #ede9ff;border-top-color:#6d5fcc;border-radius:50%;animation:spSpin .7s linear infinite}
+@keyframes spSpin{to{transform:rotate(360deg)}}
+
+/* ── Footer ── */
+.sp-footer{padding:16px 24px;border-top:1px solid #f0eef5;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-shrink:0;background:#faf9fe}
+.sp-selection-info{font-size:.82rem;font-weight:600;color:var(--text-muted,#8a86a0);display:flex;align-items:center;gap:6px}
+.sp-selection-info i{font-size:.75rem}
+.sp-selection-info.has-sel{color:#6d5fcc;font-weight:700}
+.sp-footer-actions{display:flex;gap:8px;align-items:center}
+
+.sp-btn-cancel{padding:10px 20px;border-radius:12px;border:1.5px solid #e5e3ee;background:#fff;color:#6b6880;font-size:.85rem;font-weight:700;font-family:inherit;cursor:pointer;transition:all .18s ease}
+.sp-btn-cancel:hover{border-color:#c9c2f5;color:#5b4dc0;background:#f8f6ff}
+
+.sp-btn-confirm{padding:10px 24px;border-radius:12px;border:none;background:linear-gradient(135deg,#6d5fcc,#8b7fe8);color:#fff;font-size:.85rem;font-weight:700;font-family:inherit;cursor:pointer;transition:all .18s ease;box-shadow:0 4px 14px rgba(109,95,204,.3)}
+.sp-btn-confirm:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 20px rgba(109,95,204,.4)}
+.sp-btn-confirm:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* Responsive */
+@media(max-width:580px){
+  .sp-card{width:98vw;max-height:95vh;border-radius:18px}
+  .sp-topbar-inner{padding:16px 18px 10px}
+  .sp-info-strip{padding:8px 18px 12px}
+  .sp-body{padding:14px 16px}
+  .sp-grid{grid-template-columns:repeat(3,1fr)}
+  .sp-footer{padding:12px 16px;flex-direction:column;gap:10px}
+  .sp-footer-actions{width:100%;justify-content:flex-end}
+}

@@ -67,4 +67,4 @@ One problem I ran into was a MySQL import error when moving the project from XAM
 | Database | [`database/schema.sql`](database/schema.sql) |
 | More documentation | [File guide](docs/PROJECT_MAP.md), [Database](docs/DATABASE.md), [Security](docs/SECURITY.md), [Checks](docs/CHECKS.md) |
 
-This is a college assignment and a portfolio project. It hasn't gone through a full security review. The repository doesn't contain the actual hosting password or personal data from the live database.
+This is a college assignment. It hasn't gone through a full security review. The repository doesn't contain the actual hosting password or personal data from the live database.
